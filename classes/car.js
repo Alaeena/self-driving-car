@@ -23,13 +23,11 @@ const net = new brain.NeuralNetwork(config);
 net.fromJSON(jsonData);
 
 class Car {
-  constructor(x, y, width, height, option = 'default', useImage = false) {
+  constructor(x, y, width, height, option = 'default') {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-
-    this.useImage = useImage;
     this.option = option;
 
     this.speed = 0;
@@ -46,7 +44,6 @@ class Car {
       this.saved = false;
     }
 
-    if (useImage) {
       this.img = new Image();
       this.img.src = 'car.png';
 
@@ -63,7 +60,6 @@ class Car {
         maskCtx.globalCompositeOperation = 'destination-atop';
         maskCtx.drawImage(this.img, 0, 0, this.width, this.height);
       };
-    }
   }
   #createPolygon() {
     const points = [];
@@ -162,7 +158,6 @@ class Car {
     if (drawSensor) {
       this.sensor.draw(ctx);
     }
-    if (this.useImage) {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(-this.angle);
@@ -172,19 +167,7 @@ class Car {
       }
       ctx.drawImage(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
       ctx.restore();
-    } else {
-      if (this.damaged) {
-        ctx.fillStyle = 'gray';
-      } else {
-        ctx.fillStyle = 'black';
-      }
-      ctx.beginPath();
-      ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
-      for (let i = 1; i < this.polygon.length; i++) {
-        ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
-      }
-      ctx.fill();
-    }
+    
   }
 }
 export default Car;
