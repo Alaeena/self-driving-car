@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Self-driving car</title>
+  </head>
+  <body>
+    <!-- MAIN APP PANEL -->
+    <div id="verticalButtons">
+      <button class="save" data-type="save">save</button>
+      <button class="back" data-type="delete">back</button>
+      <button class="reset" data-type="delete">reset</button>
+    </div>
+    <canvas id="carCanvas"></canvas>
+    <canvas id="networkCanvas"></canvas>
+
+    <!-- MAIN APP OPTION -->
+    <div class="option option1">
+      <div class="header">
+        <h1>Self-Driving Car</h1>
+        <h3>Created with Neural Network</h3>
+      </div>
+      <div>
+        <button class="train">Train mode</button>
+        <button class="auto">Auto train mode</button>
+        <button class="test">Test mode</button>
+      </div>
+    </div>
+
+    <div class="option option2">
+      <div class="header">
+        <h1>Save this driving option?</h1>
+      </div>
+      <div>
+        <button class="train">Save</button>
+        <button class="test">Discard</button>
+      </div>
+    </div>
+
+    <div class="overlay"></div>
+    <!-- <script src="//unpkg.com/brain.js"></script> -->
+    <script src="./classes/brain.js"></script>
+    <script type="module" defer src="main.js"></script>
+  </body>
+</html>
