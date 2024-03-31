@@ -40,7 +40,7 @@ class Car {
     this.controller = new Controller(option != 'default');
 
     if (option != 'default') {
-      this.brain = new NeuralNetwork([this.sensor.rayCount, 6, 4]);
+      this.brain = new NeuralNetwork([this.sensor.rayCount, 3, 4]);
     } else {
       this.data = [];
       this.saved = false;
@@ -138,6 +138,7 @@ class Car {
     const offsets = this.sensor.readings.map((s) => (s == null ? 0 : 1 - s.offset));
 
     if (this.option != 'default') {
+      NeuralNetwork.feedForward(offsets, this.brain)
       const outputs = (this.option == 'auto' && NeuralNetwork.feedForward(offsets, this.brain)) || net.run(offsets);
 
       this.controller.forward = Math.round(outputs[0]);

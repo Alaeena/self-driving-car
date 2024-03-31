@@ -48,7 +48,7 @@ function loadTrainOption() {
 
 function loadTestOption(needCheck = true) {
   const test = new Test(carCanvas, networkCanvas);
-  networkCanvas.style.display = 'none';
+  networkCanvas.style.display = 'flex';
 
   IntervalId = setInterval(function () {
     if (needCheck || test.canAnimate()) {
